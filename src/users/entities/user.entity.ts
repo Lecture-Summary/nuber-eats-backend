@@ -8,8 +8,8 @@ import { CoreEntity } from 'src/common/entities/core.entity';
 import { Column, Entity } from 'typeorm';
 
 enum UserRole {
-  Owner,
   Client,
+  Owner,
   Delivery,
 }
 
