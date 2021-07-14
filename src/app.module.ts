@@ -5,6 +5,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { Restaurant } from './restaurants/entities/restaurant.entity';
+import { UsersModule } from './users/users.module';
+import { CommonModule } from './common/common.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -21,7 +24,6 @@ import { Restaurant } from './restaurants/entities/restaurant.entity';
         DB_NAME: Joi.string().required(),
       }),
     }),
-    RestaurantsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -31,11 +33,13 @@ import { Restaurant } from './restaurants/entities/restaurant.entity';
       database: process.env.DB_NAME,
       synchronize: process.env.NODE_ENV !== 'prod',
       logging: process.env.NODE_ENV !== 'prod',
-      entities: [Restaurant],
+      entities: [User],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
     }),
+    UsersModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
