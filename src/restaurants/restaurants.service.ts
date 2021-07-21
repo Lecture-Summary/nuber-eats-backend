@@ -14,6 +14,7 @@ import {
   EditRestaurantInput,
   EditRestaurantOutput,
 } from './dtos/edit-restaurant.dto';
+import { AllCategoriesOutput } from './entities/all-categories.dto';
 import { Category } from './entities/category.entity';
 import { Restaurant } from './entities/restaurant.entity';
 import { CategoryRepository } from './repositories/category.repository';
@@ -76,7 +77,7 @@ export class RestaurantService {
       ]);
       return { ok: true };
     } catch (e) {
-      return { ok: false, error: 'Restaurant not found' };
+      return { ok: false, error: 'Could not edit restaurant.' };
     }
   }
 
@@ -99,6 +100,15 @@ export class RestaurantService {
       return { ok: true };
     } catch {
       return { ok: false, error: 'Could not delete restaurant.' };
+    }
+  }
+
+  async allCategories(): Promise<AllCategoriesOutput> {
+    try {
+      const categories = await this.categories.find();
+      return { ok: true, categories };
+    } catch {
+      return { ok: false, error: 'Could not load categories' };
     }
   }
 }
