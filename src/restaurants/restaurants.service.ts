@@ -111,4 +111,8 @@ export class RestaurantService {
       return { ok: false, error: 'Could not load categories' };
     }
   }
+
+  counstRestaurants(category: Category) {
+    return this.restaurants.count({ category });
+  }
 }
