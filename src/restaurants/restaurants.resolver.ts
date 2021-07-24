@@ -29,7 +29,7 @@ import {
   SearchRestaurantInput,
   SearchRestaurantOutput,
 } from './dtos/search-restaurant.dto';
-import { AllCategoriesOutput } from './entities/all-categories.dto';
+import { AllCategoriesOutput } from './dtos/all-categories.dto';
 import { Category } from './entities/category.entity';
 import { Restaurant } from './entities/restaurant.entity';
 import { RestaurantService } from './restaurants.service';
