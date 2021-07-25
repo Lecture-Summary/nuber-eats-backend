@@ -8,7 +8,7 @@ import { OrderService } from './orders.service';
 
 @Resolver(of => Order)
 export class OrderResolver {
-  constructor(private readonly ordersService: OrderService) {}
+  constructor(private readonly orderService: OrderService) {}
 
   @Mutation(returns => CreateOrderOutput)
   @Role(['Client'])
