@@ -8,7 +8,7 @@ import { OrderService } from './orders.service';
 
 @Resolver(of => Order)
 export class OrderResolver {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly ordersService: OrderService) {}
 
   @Mutation(returns => CreateOrderOutput)
   @Role(['Client'])
@@ -16,6 +16,6 @@ export class OrderResolver {
     @AuthUser() customer: User,
     @Args('input') createOrderInput: CreateOrderInput,
   ): Promise<CreateOrderOutput> {
-    return { ok: true };
+    return this.ordersService.createOrder(customer, createOrderInput);
   }
 }
