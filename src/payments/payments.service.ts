@@ -31,6 +31,11 @@ export class PaymentService {
       if (restaurant.ownerId !== owner.id) {
         return { ok: false, error: 'You are not allowed to this.' };
       }
+      restaurant.isPromoted = true;
+      const date = new Date();
+      date.setDate(date.getDate() + 7);
+      restaurant.promotedUntil = date;
+      this.restaurants.save(restaurant);
       await this.payments.save(
         this.payments.create({
           transactionId,
@@ -51,15 +56,5 @@ export class PaymentService {
     } catch {
       return { ok: false, error: 'Could not load payments.' };
     }
-  }
-
-  @Cron('30 * * * * *')
-  async checkForPayments() {
-    console.log('Checking for payments...');
-  }
-
-  @Interval(5000)
-  async checkForPaymentsI() {
-    console.log('Checking for payments...');
   }
 }
