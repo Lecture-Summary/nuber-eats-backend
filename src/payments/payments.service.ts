@@ -9,6 +9,7 @@ import {
 } from './dtos/create-payment.dto';
 import { GetPaymentsOutput } from './dtos/get-payments.dto';
 import { Payment } from './entities/payment.entity';
+import { Cron, Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class PaymentService {
@@ -50,5 +51,15 @@ export class PaymentService {
     } catch {
       return { ok: false, error: 'Could not load payments.' };
     }
+  }
+
+  @Cron('30 * * * * *')
+  async checkForPayments() {
+    console.log('Checking for payments...');
+  }
+
+  @Interval(5000)
+  async checkForPaymentsI() {
+    console.log('Checking for payments...');
   }
 }
