@@ -39,6 +39,8 @@ import { UploadsModule } from './uploads/uploads.module';
         MAILGUN_API_KEY: Joi.string().required(),
         MAILGUN_FROM_EMAIL: Joi.string().required(),
         MAILGUN_DOMAIN_NAME: Joi.string().required(),
+        ACCESSKEYID: Joi.string().required(),
+        SECRETACCESSKEY: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot({
